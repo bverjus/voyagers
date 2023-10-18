@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.display{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.text-loader{
+    animation: loading03 .7s infinite alternate;
+}
+
+#itineraire-result {
+  white-space: pre-line;
+}
+
+@keyframes loading03 {
+    0% {
+      transform: translateX(10px);
+    }
+    100% {
+      transform: TranslateX(-10px);
+    }
+  }
