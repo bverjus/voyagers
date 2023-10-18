@@ -34,7 +34,7 @@ class GenerationController extends Controller
             "model" => "gpt-3.5-turbo",
             "messages" => [[
                 'role' => "user",
-                'content' => "Génère sous forme de liste numérotée ( 1)xxxx 2)xxxx 3)xxxx ) 10 adresses à conseiller comme des restaurants , bars , hotels, activités et endroits insolite dans ce lieu : {$itineraireContent}.Si tu ne connais pas ce lieu, préviens moi et ne propose aucunes activités",
+                'content' => "Génère sous forme de liste numérotée ( 1)xxxx 2)xxxx 3)xxxx ) 10 adresses à conseiller comme des restaurants , bars , hotels, activités et endroits insolite dans ce lieu : {$itineraireContent}.",
             ]],
         ]);
 

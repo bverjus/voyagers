@@ -138,7 +138,22 @@ class ItinerairesController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         // Affichez le PDF dans un nouvel onglet du navigateur
-        $dompdf->stream();
-        return redirect()->route('itineraire.show', ['id' => $id])->with('success', 'PDF généré avec succès.');
+
+
+        // Générer le PDF et le télécharger
+        $pdfFileName = 'itineraire.pdf';
+        $dompdf->stream($pdfFileName);
+
+        // Terminer la réponse pour éviter tout autre rendu
+        return response()->stream(function () use ($dompdf) {
+            $dompdf->stream();
+        }, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $pdfFileName . '"',
+        ]);
+
+
+        // $dompdf->stream();
+        // return redirect()->route('itineraire.show', ['id' => $id])->with('success', 'PDF généré avec succès.');
     }
 }
