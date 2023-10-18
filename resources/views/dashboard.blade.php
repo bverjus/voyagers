@@ -3,7 +3,7 @@
     </x-slot>
 
     <div class="py-2 w-full">
-        <div class="w-full lg:max-w-[80%] lg:mx-auto h-[600px] 2xl:h-[80vh] relative">
+        <div class="w-full lg:max-w-[80%] lg:mx-auto h-[601px] 2xl:h-[80vh] relative">
             <img src="{{ asset('images/hero-banner.png') }}" alt="" class="w-full h-full rounded-3xl object-cover object-center">
             <div class="bg-bleu bg-opacity-80 absolute top-[5%] sm:top-[25%] 2xl:top-[30%] w-[80%] right-[10%] sm:w-[70%] sm:right-[15%] md:w-[50%] md:right-[25%] mx-auto lg:right-[5%] lg:w-[35%] xl:w-[33%] 2xl:w-[28%] z-10 rounded-3xl p-6 xl:p-10">
                 {{-- <form action="{{ route('generation.generate') }}" method="POST" id="generation-form" class="w-full "> --}}
