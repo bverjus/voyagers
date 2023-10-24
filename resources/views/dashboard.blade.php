@@ -1,12 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
     </x-slot>
-
     <div class="py-2 w-full">
         <div class="w-full lg:max-w-[80%] lg:mx-auto h-[601px] 2xl:h-[80vh] relative">
             <img src="{{ asset('images/hero-banner.png') }}" alt="" class="w-full h-full rounded-3xl object-cover object-center">
             <div class="bg-bleu bg-opacity-80 absolute top-[5%] sm:top-[25%] 2xl:top-[30%] w-[80%] right-[10%] sm:w-[70%] sm:right-[15%] md:w-[50%] md:right-[25%] mx-auto lg:right-[5%] lg:w-[35%] xl:w-[33%] 2xl:w-[28%] z-10 rounded-3xl p-6 xl:p-10">
-                {{-- <form action="{{ route('generation.generate') }}" method="POST" id="generation-form" class="w-full "> --}}
                 <form id="generation-form" class="w-full">
                     @csrf
                     <div class="flex flex-col w-full mb-2">
@@ -53,9 +51,9 @@
                             <span id="budget-value" class="text-orange text-sm font-display font-medium" x-text="budgetValue"></span>
                         </div>
                     </div>
-                    {{-- <button type="submit" class="bg-orange text-white px-12 py-2 rounded-md text-sm font-semibold font-display hover:bg-orange_hover mt-5">Générer</button> --}}
+                   
                     <button id="generate-button" type="submit" class="bg-orange text-white px-12 py-2 rounded-md text-sm font-semibold font-display hover-bg-orange_hover mt-5">Générer</button>
-                    {{-- <div id="generate-link" data-route="{{ route('generation.generate') }}"></div> --}}
+                    
                 </form>    
             </div>
             <div role="status" class="loader w-full justify-center mt-4 px-4  items-center bg-gray-500 py-4 md:py-8 bg-opacity-60 absolute bottom-0 z-40 rounded-b-3xl hidden">
@@ -71,62 +69,27 @@
         
         <div class="w-full mb-10">
             <div class="w-[80%] mx-auto h-full my-auto ">
-                <section class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-10">
+                <section id="result-section" class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-10">
                     <div class="lg:col-span-2 itineraire-container" >
                         <h2 class="text-2xl font-medium text-gray-700 mb-10">Itinéraire personnalisé : </h2>
-                        {{-- @isset($itineraire) --}}
+                     
                             <div class="mt-1 mb-12">
-                                {{-- <textarea
-                                    id="itineraire"
-                                    class="min-h-[720px] w-full mx-auto rounded-md border-gray-300 shadow-sm focus:border-bleu focus:ring-bleu"
-                                >{{ $itineraire }}</textarea> --}}
-                                <div id="itineraire-result" class=" w-full mx-auto ">
+                             
+                                <div id="itineraire-result" class=" w-[95%] mx-auto ">
                                     
                                 </div>
                             </div>
                             
-                            {{-- <form method="POST" action="{{ route('sauvegarder') }}">
-                                @csrf
-                                <input type="hidden" name="itineraire" value="{{ $itineraire }}">
-                                <input type="hidden" name="activites" value="{{ $activities }}">
-                                <input type="hidden" name="lieu" value="{{$lieu}}">
-                                <input type="hidden" name="nb_jours" value="{{$nb_jours}}">
-                                <input type="hidden" name="nb_personnes" value="{{$nb_personnes}}">
-                                <input type="hidden" name="type" value="{{$type}}">
-                                <input type="hidden" name="budget" value="{{$budget}}">
-                                <button type="submit" class="bg-orange text-white font-display text-md px-10 py-2 mt-8 text-center hover:bg-orange_hover rounded hidden lg:inline">Sauvegarder l'itinéraire</button>
-                            </form> --}}
-                        {{-- @endisset --}}
+                         
                     </div>
                     
                     <div class="mt-8 lg:mt-0"> 
                         <h2 class="text-2xl font-medium text-gray-700 mb-10">Les incontournables : </h2>
-                        {{-- @isset($activities) --}}
+                       
                         <div id="activities-result" class="w-full mx-auto border-gray-300">
                                     
                         </div>
-                            {{-- <ul class="mb-12">
-                                @php
-                                    $activityList = preg_split('/\s(?=\d+\))/u', $activities);
-                                @endphp
-        
-                                @foreach ($activityList as $activity)
-                                    <li>{{ $activity }}</li><br>
-                                @endforeach
-                            </ul> --}}
-                            {{-- <form method="POST" action="{{ route('sauvegarder') }}">
-                                @csrf
-                                <input type="hidden" name="itineraire" value="{{ $itineraire }}">
-                                <input type="hidden" name="activites" value="{{ $activities }}">
-                                <input type="hidden" name="lieu" value="{{$lieu}}">
-                                <input type="hidden" name="nb_jours" value="{{$nb_jours}}">
-                                <input type="hidden" name="nb_personnes" value="{{$nb_personnes}}">
-                                <input type="hidden" name="type" value="{{$type}}">
-                                <input type="hidden" name="budget" value="{{$budget}}">
-                                <button type="submit" class="bg-orange text-white font-display text-md px-10 py-2 mt-8 text-center hover:bg-orange_hover rounded lg:hidden">Sauvegarder l'itinéraire</button>
-                            </form> --}}
-                            {{-- <a class="bg-orange text-white font-display text-md px-10 py-2 mt-8 text-center hover:bg-orange_hover rounded lg:hidden">Sauvegarder l'itinéraire</a> --}}
-                        {{-- @endisset --}}
+                    
                     </div>
                     
                 </section>
@@ -178,6 +141,11 @@
                     $('.loader').removeClass('flex').addClass('hidden');
 
                     $('.itineraire-container').addClass('lg:border-r').addClass(' border-bleu');
+
+                    let resultSection =  document.getElementById('result-section');
+                    if (resultSection) {
+                        resultSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                    
                     var saveForm = `
                     <form id="save-itineraire-form" method="POST" action="{{ route('sauvegarder') }}">
@@ -203,6 +171,11 @@
                     $('.loader').removeClass('flex').addClass('hidden');
                     $("#itineraire-result").html("Erreur lors de la génération de l'itineraire");
                     $("#activities-result").html("Aucune recommandation disponible");
+
+                    let resultSection =  document.getElementById('result-section');
+                    if (resultSection) {
+                        resultSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 },
             });
         });
