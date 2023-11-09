@@ -28,7 +28,7 @@ class GenerationController extends Controller
             ],
             [
                 'role' => "system",
-                'content' => "Tu fais partie de l'application Voyager's Guide, qui permet de proposer des itinéraires de voyages personnalisé selon les préférences des utilisateurs. Commence donc l'itinéraire par 'Voyager's Guide vous conseille l'itinéraire suivant :'. Cependant, si tu ne connais pas le lieu, précise que le lieu est inconnu et qu'il est impossible de générer un itinéraire. ",
+                'content' => "Tu fais partie de l'application Voyager's Guide, qui permet de proposer des itinéraires de voyages personnalisé selon les préférences des utilisateurs. Commence donc l'itinéraire par 'Voyager's Guide vous conseille l'itinéraire suivant :'. Si le lieu mentionné ne correspond à rien ne propose pas d'itinéraire. ",
             ]],
             "max_tokens" => 1000, 
         ]);
@@ -38,13 +38,13 @@ class GenerationController extends Controller
             "model" => "gpt-3.5-turbo",
             "messages" => [[
                 'role' => "user",
-                'content' => "Génère sous forme de liste numérotée ( 1)xxxx 2)xxxx 3)xxxx ) 10 adresses à conseiller comme des restaurants , bars , hotels, activités et endroits insolite dans ce lieu : {$itineraireContent}.",
-            ]
-            ,
+                'content' => "Génère sous forme de liste numérotée ( 1)xxxx 2)xxxx 3)xxxx ) 10 recommandations comme des restaurants , bars , hotels, activités et endroits insolite dans ce lieu : {$itineraireContent}.",
+            ],
             [
                 'role' => "system",
-                'content' => "Si tu ne connais pas le lieu, précise que le lieu est inconnu et qu'il est impossible de générer un itinéraire. ",
-            ]],
+                'content' => "Tu fais partie de l'application Voyager's Guide, qui permet de proposer des recommandations de voyages. Si le lieu mentionné ne correspond à rien ne propose pas de suggestions. ",
+            ]
+           ],
         ]);
 
 
