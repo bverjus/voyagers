@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('itineraires.index')" :active="request()->routeIs('itineraires')" >
+                    <x-nav-link :href="route('itineraires.index')" :active="request()->routeIs('itineraires.index')" >
                         {{ __('Mes itinéraires') }}
                     </x-nav-link>
                 </div>
